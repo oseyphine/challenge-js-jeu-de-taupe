@@ -1,17 +1,27 @@
+let boutons = document.querySelectorAll('button');
 let holes = document.querySelectorAll('.hole');
 let face = "images/josephine.jpg";
 let face2 = "file:///Users/josephinelegleut/Desktop/Simplon/Exercices/challenge-js-jeu-de-taupe/images/josephine.jpg"
 let pile = "images/logorond.png";
 let score = 0;
 let scoreShow = document.querySelectorAll('span');
+let oneAtTheTime = 0;
+let timeTab = [];
 
-let timeOut;
-let setInterval;
-
+let setIntervalReveal;
+let setIntervalHide
 
 function move(){
-	setInterval = window.setInterval(reveal, 1000);
-	setInterval = window.setInterval(hide, 1500);
+	if(timeTab.length>1){
+
+		timeTab = [];
+	} else {
+		oneAtTheTime++;
+		timeTab.push(oneAtTheTime);
+		console.log(timeTab);
+	}	
+	setIntervalReveal = window.setInterval(reveal, 1000);
+	setIntervalHide = window.setInterval(hide, 1500);
 }
 
 function reveal(){
@@ -28,14 +38,12 @@ function hide(){
 		// console.log(holes[i].src)
 	}
 }
-
-// function score(){
-	// holes[0].src = face;
-
+// CA SERT POUR LE SCORE
 	for(let i=0; i<holes.length; i++){
-		holes[i].addEventListener('click', function() {
-			// console.log(holes[i].src)
-			// console.log(face)			
+		holes[i].addEventListener('click', function(e) {
+			console.log(holes[i].src)
+			console.log(e.currentTarget.src)
+			console.log(face)			
 			if(holes[i].src == face2){
 				score++;
 				scoreShow[0].innerHTML = score;
@@ -45,11 +53,19 @@ function hide(){
 			}
 		})
 	}
-// }
 
 function stop(){
-	alert('Patience, la fonction arrive ! ;)')
+    clearInterval(setIntervalReveal);
+    clearInterval(setIntervalHide);
 }
 function reset(){
-	alert('Patience, la fonction arrive ! ;)')
+for(let i=0; i<holes.length; i++){
+		holes[i].src = pile;
+		// console.log(holes[i].src)
+	}
+	stop();
+	score = "";
+	scoreShow[0].innerHTML = score;
+
+	// alert('Patience, la fonction arrive ! ;)')
 }
