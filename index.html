@@ -14,16 +14,18 @@
 <body>
   <header>
     <h1>Let's play, Whack a mole!</h1>
-    <p>w/ Simplon_Réunion</p>
+    <h2>w/ Simplon_Réunion</h2>
   </header>
   <section>
   <div class="container">
     <div class="container-fluid">
       <div class="section-top">
-        <div class="timer">
-          <p>Score : <span></span></p>
-        </div>
-        <button type="submit" href="#">Reset score</button>
+<!--         <div class="timer">
+ -->          <h2>Score : <span></span></h2>
+<!--         </div> -->        
+        <button type="submit" href="#" onclick="move()">Start !</button>
+        <button type="submit" href="#" onclick="stop()">Stop !</button>
+        <button type="submit" href="#" onclick="reset()">Reset !</button>
       </div>
       <div class="plateau">
         <img src="images/logorond.png" class="hole" id="position1" />
